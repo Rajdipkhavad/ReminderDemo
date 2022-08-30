@@ -1,0 +1,41 @@
+<button class="m-1" mat-raised-button color="primary" (click)="Add()">Add a reminder</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name. </th>
+        <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.Title}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dueDate">
+        <th mat-header-cell *matHeaderCellDef> Due Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.DueDate|date:'dd/MM/yyyy hh:mm a' }} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="isCompleted">
+        <th mat-header-cell *matHeaderCellDef> Is Complated </th>
+        <td mat-cell *matCellDef="let element"> {{element.IsComplated}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" class="m-1" (click)="openAddEditDialog(element)">Edit</button>
+            <button mat-raised-button class="m-1" (click)="Delete(element.Id)">Delete</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
